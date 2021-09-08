@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.0/cerulean/bootstrap.min.css" integrity="sha512-tXycPnL+Yr5QLii76wlGuzgdqLkLEZezX74rw4uIjh1d6XDqT/niMQii5BKPooWAcJPjbILegKuDlBmSilfgvw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Weather App</title>
+    <style>
+        h4{
+            color: blue;
+        }
+        body{
+            background-color: aquamarine;
+        }
+        .img{
+            border-radius: 125px;
+            margin-left: 38%;
+            margin-top: 10px;
+        }
+        .badge{
+            color: #F5C;
+        }
+        form{
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-top: 10px;
+        }
+        .inp{
+            width: 100%;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        .btn{
+            justify-content: center;
+            align-items: center;
+            margin-left: 40%;
+        }
+        .row{
+            margin-left: 33%;
+        }
+        .titl{
+            font-family: cursive;
+            font-size: x-large;
+        }
+        .ref{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd">
+        <div class="container-fluid">
+          <a class="navbar-brand titl" href="#">Weather App</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+            
+             
+             
+            <form class="d-flex">
+              
+              <button class="btn btn-outline-success ref" type="submit">Refresh</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div class="container ">
+
+      <img src="{% static 'images/images.jpg' %}" class="img" alt="">
+      <form action="" method="post">
+
+        {% csrf_token %}
+        <input type="text" class="inp" name="city" placeholder="choose your city....">
+        <br>
+        <button type="submit" class="btn btn-info">search</button>
+      </form>
+
+      <br><br>
+
+      <div class="row">
+
+        {% if country_code and coordinate and temp and pressure and humidity %}
+
+        <div class="card-body">
+            <h4> <span class="badge badge-primary">COUNTRY CODE :</span> {{country_code}} </h4>
+            <h4> <span class="badge badge-primary">COORDINATES [X,Y] :</span> {{coordinate}} </h4>
+            <h4> <span class="badge badge-primary">TEMPERATURE</span> {{temp}} </h4>
+            <h4> <span class="badge badge-primary">PRESSURE :</span> {{pressure}} </h4>
+            <h4> <span class="badge badge-primary">HUMIDITY :</span> {{humidity}} </h4>
+            <h4> <span class="badge badge-primary">FORECAST :</span> {{main}} <img src="http://openweathermap.org/img/w/{{icon}}.png" alt="image"> </h4>
+            <h4> <span class="badge badge-primary">DESCRIPTION :</span> {{description}} </h4>
+        </div>
+        {% endif %}
+
+
+
+
+
+
+      </div>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>
